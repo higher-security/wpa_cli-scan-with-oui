@@ -1,0 +1,5 @@
+#!/bin/bash
+INTERFACE=${@:-wlp3s0}
+echo "Selected interface '$INTERFACE'
+bssid (oui) / frequency / signal level / flags / ssid"
+wpa_cli -i $INTERFACE scan_results  |tee /var/log/wpa_cli-scan | sed 1,2d |   gawk '{"./oui-find "$1| getline $1 }1'
